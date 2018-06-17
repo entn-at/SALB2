@@ -46,6 +46,7 @@ for idx, (text,_) in enumerate(maps):
 	
 waveforms = []
 
+wvidx = 1
 for idx, (text, mel) in enumerate(maps):
     print("\n", idx, text)
     mel_path = join("../Tacotron-2", mel)
@@ -59,6 +60,6 @@ for idx, (text, mel) in enumerate(maps):
     waveform = wavegen(model, c=c, fast=True, tqdm=tqdm)
   
     waveforms.append(waveform)
-	
 
-librosa.output.write_wav("out.wav", waveforms[0], hparams.sample_rate)
+    librosa.output.write_wav(str(wvidx) + ".wav", waveforms[wvidx], hparams.sample_rate)
+    wvidx += 1
